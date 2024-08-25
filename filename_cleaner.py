@@ -1,14 +1,20 @@
-# DESCRIPTION: This program will format the names of all files and directories within one directory. 
-#   1) Uppercase characters are converted to lowercase
-#   2) Removes leading and trailing whitespaces
-#   3) Replaces whitespaces between charters with an underscore. 
-# USAGE: 
+#!/usr/bin/python3 """This is a shebang for linux OS. It tells the OS to use the python3 interpreter"""
+
+# DESCRIPTION: This program will format the names of all files and directories within one directory.
+#   1) Uppercase characters are converted to lowercase.
+#   2) Removes leading and trailing whitespaces.
+#   3) Replaces whitespaces between charters with an underscore.
+#   4) Remove multiple whitespaces in a row.
+# USAGE:
+#   Do not call this program with python or python3.
 #   [filename_cleaner.py]: Prepares name changes in the CWD and prompts user to view changes before applying.
 #   [filename_cleaner.py -f]: Force, apply name changes in the CWD.
 #   [filename_cleaner.py absolute/path/to/dir]: Prepares name changes in the at "absolute/path/to/dir" and prompts user to view changes before applying.
 #   [filename_cleaner.py absolute/path/to/dir -f]:  Force, apply name changes at "absolute/path/to/dir".
+# OS:
+#    Tested on WindowsOS and WSL Ubuntu Linux distro.
 
-import os, sys, pdb
+import os, sys
 
 class Directory:
     def __init__(self, path=os.getcwd()):
@@ -107,7 +113,6 @@ def print_usage() -> None:
     prompt = f'File_name_cleaner.py USAGE:\ninvalid args: {args} expects at most 2 args.\ndefault: no args. Program prompts the number of files and directories in the cwd that it will rename.\n-f: force. Program renames files and dirs in the CWD. force can follow path to force rename at the directory specified in path.\n"total/path/to/dir": path. Program preforms default function at the specified path.\n'
     print(prompt)
 
-
 if __name__ == "__main__":
     args = sys.argv
     args_len = len(args)
@@ -161,8 +166,6 @@ if __name__ == "__main__":
                 print(f'{count_renamed[0]} files were renamed and {count_renamed[1]} directories were renamed.')
 
         elif os.path.isdir(args[1]):                                                                 # 3:default at path
-	    
-	    
             dir = Directory(args[1])
             renameable = dir.prep()
             if renameable[0] == 0 and renameable[1] == 0:
