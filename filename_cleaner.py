@@ -87,7 +87,7 @@ class Directory:
         while i < len(content_name):
             if content_name[i].isupper():
                 if i - 1 > 0:
-                    if content_name[i - 1].isalpha():
+                    if content_name[i - 1] != " ":
                         out += "_" 
                 out += content_name[i].lower()
             elif content_name[i] == " ":
