@@ -1,7 +1,13 @@
-# Description: Run filename_cleaner.py from within the directory you want to clean file and directory names in. This
-#   program will rename files such that: 1) an uppercase characters are converted to lowercase, 2) remove leading and
-#   trailing whitespaces, and 3) replace whitespaces between charters with an underscore. This program will not look
-#   inside directories within the working directory.
+# DESCRIPTION: This program will format the names of all files and directories within one directory. 
+#   1) Uppercase characters are converted to lowercase
+#   2) Removes leading and trailing whitespaces
+#   3) Replaces whitespaces between charters with an underscore. 
+# USAGE: 
+#   [filename_cleaner.py]: Prepares name changes in the CWD and prompts user to view changes before applying.
+#   [filename_cleaner.py -f]: Force, apply name changes in the CWD.
+#   [filename_cleaner.py absolute/path/to/dir]: Prepares name changes in the at "absolute/path/to/dir" and prompts user to view changes before applying.
+#   [filename_cleaner.py absolute/path/to/dir -f]:  Force, apply name changes at "absolute/path/to/dir".
+
 import os, sys, pdb
 
 class Directory:
@@ -10,7 +16,7 @@ class Directory:
         if os.path.isdir(path):
             self._path = path
         else:
-            raise
+            raise InvalidPathToDirectory
         self._dir_contents = os.listdir(self._path)
         self._dir_contents_to_change = []
 
