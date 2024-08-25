@@ -212,7 +212,7 @@ if __name__ == "__main__":
 
     elif args_len == 3:
         if os.path.isdir(args[1]) and args[2] == '-f':                                                 # 4:force at path
-            dir = Directory(os.getcwd())
+            dir = Directory(args[1])
             renameable = dir.prep()
             if renameable[0] == 0 and renameable[1] == 0:
                 print(f'The file names within {dir.get_path()} are already formatted properly.')
