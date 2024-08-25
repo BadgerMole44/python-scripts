@@ -112,13 +112,13 @@ if __name__ == "__main__":
     args = sys.argv
     args_len = len(args)
     if args_len == 1:                                                                                    # 1:default cwd
-        Dir = Directory()
-        renameable = Dir.prep()
+        dir = Directory()
+        renameable = dir.prep()
         if renameable[0] == 0 and renameable[1] == 0:
-            print(f'The file names within {Dir.get_path()} are already formatted properly.')
+            print(f'The file names within {dir.get_path()} are already formatted properly.')
             exit()
         else:
-            print(f'There are {renameable[0]} file(s) and {renameable[1]} dir(s) that can be renamed in {Dir.get_path()}.')
+            print(f'There are {renameable[0]} file(s) and {renameable[1]} dir(s) that can be renamed in {dir.get_path()}.')
 
             loop, name_changes = True, None
             while loop:                                                                                  # view changes?
@@ -128,7 +128,7 @@ if __name__ == "__main__":
                     exit()
                 elif user_input.lower() == 'v':
                     loop = False
-                    name_changes = Dir.preview_changes()
+                    name_changes = dir.preview_changes()
                 else:
                     print(f'Invalid option: {user_input} is not "v" or "q".')
 
@@ -142,7 +142,7 @@ if __name__ == "__main__":
                     exit()
                 elif user_input.lower() == 'a':
                     loop = False
-                    count_renamed = Dir.apply_changes()
+                    count_renamed = dir.apply_changes()
                 else:
                     print(f'Invalid option: {user_input} is not "v" or "q".')
 
@@ -151,24 +151,26 @@ if __name__ == "__main__":
     elif args_len == 2:
 
         if args[1] == '-f':                                                                                # 2:force cwd
-            Dir = Directory()
-            renameable = Dir.prep()
+            dir = Directory()
+            renameable = dir.prep()
             if renameable[0] == 0 and renameable[1] == 0:
-                print(f'The file names within {Dir.get_path()} are already formatted properly.')
+                print(f'The file names within {dir.get_path()} are already formatted properly.')
                 exit()
             else:
-                count_renamed = Dir.apply_changes()
+                count_renamed = dir.apply_changes()
                 print(f'{count_renamed[0]} files were renamed and {count_renamed[1]} directories were renamed.')
 
         elif os.path.isdir(args[1]):                                                                 # 3:default at path
-            Dir = Directory(args[1])
-            renameable = Dir.prep()
+	    
+	    
+            dir = Directory(args[1])
+            renameable = dir.prep()
             if renameable[0] == 0 and renameable[1] == 0:
-                print(f'The file names within {Dir.get_path()} are already formatted properly.')
+                print(f'The file names within {dir.get_path()} are already formatted properly.')
                 exit()
             else:
                 print(
-                    f'There are {renameable[0]} file(s) and {renameable[1]} dir(s) that can be renamed in {Dir.get_path()}.')
+                    f'There are {renameable[0]} file(s) and {renameable[1]} dir(s) that can be renamed in {dir.get_path()}.')
                 loop, name_changes = True, None
                 while loop:  # view changes?
                     user_input = input(f'Enter v to view changes before applying or q to quit: ')
@@ -177,7 +179,7 @@ if __name__ == "__main__":
                         exit()
                     elif user_input.lower() == 'v':
                         loop = False
-                        name_changes = Dir.preview_changes()
+                        name_changes = dir.preview_changes()
                     else:
                         print(f'Invalid option: {user_input} is not "v" or "q".')
 
@@ -191,7 +193,7 @@ if __name__ == "__main__":
                         exit()
                     elif user_input.lower() == 'a':
                         loop = False
-                        count_renamed = Dir.apply_changes()
+                        count_renamed = dir.apply_changes()
                     else:
                         print(f'Invalid option: {user_input} is not "v" or "q".')
 
@@ -202,13 +204,13 @@ if __name__ == "__main__":
 
     elif args_len == 3:
         if os.path.isdir(args[1]) and args[2] == '-f':                                                 # 4:force at path
-            Dir = Directory(os.getcwd())
-            renameable = Dir.prep()
+            dir = Directory(os.getcwd())
+            renameable = dir.prep()
             if renameable[0] == 0 and renameable[1] == 0:
-                print(f'The file names within {Dir.get_path()} are already formatted properly.')
+                print(f'The file names within {dir.get_path()} are already formatted properly.')
                 exit()
             else:
-                count_renamed = Dir.apply_changes()
+                count_renamed = dir.apply_changes()
                 print(f'{count_renamed[0]} files were renamed and {count_renamed[1]} directories were renamed.')
         else:                                                                                           # no valid input
             print_usage()
