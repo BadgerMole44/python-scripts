@@ -3,9 +3,9 @@
 This repository houses python scripts I use personally. Currently, it contains:
 - filename_cleaner.py: Cleans the names of all content within a specified directory.
 ## Usage
-This all programs in this repository are meant to be added to the OS path and run from the command line. For example use script_name.py args and not python path/to/script_name.py args. Each script has description text for specific info such as args, flags, etc.
+All programs in this repository are meant to be added to the OS path and run from the command line. For example, use 'script_name.py args' and not 'python path/to/script_name.py args'. Each script has description text for specific info such as args, flags, etc.
 ## Add Program to the System Path:
-The below will describe how to enable program execution from the system path for Windows and Linux (Specifically WSL Ubuntu).
+Below will describe how to enable program execution from the system path for Windows and Linux (Specifically WSL Ubuntu).
 ### Windows: Add Directory to Path 
 1. Place the .py script file in a directory.
 2. Go to Advanced System Settings > Environment Variables.
