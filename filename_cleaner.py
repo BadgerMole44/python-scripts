@@ -1,5 +1,5 @@
-#!/usr/bin/python3 """This is a shebang for linux OS. It tells the OS to use the python3 interpreter"""
-
+#!/usr/bin/python3 
+# Above is the shebang for Linux path
 # DESCRIPTION: This program will format the names of all files and directories within one directory.
 #   1) Uppercase characters are converted to lowercase.
 #   2) Removes leading and trailing whitespaces.
