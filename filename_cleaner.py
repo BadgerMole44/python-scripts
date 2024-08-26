@@ -2,10 +2,9 @@
 # Above is the shebang for Linux path
 # DESCRIPTION: This program will format the names of all files and directories within one directory.
 #   1) Uppercase characters are converted to lowercase.
-#   2) Removes leading and trailing whitespaces.
-#   3) Replaces whitespaces between charters with an underscore.
-#   4) Remove multiple whitespaces in a row.
-#   5) Convert CamelCase to snake_case.
+#   2) Replaces whitespaces between charters with an underscore.
+#   3) Remove multiple whitespaces in a row.
+#   4) Convert CamelCase to snake_case.
 # USAGE:
 #   Do not call this program with python or python3.
 #   [filename_cleaner.py]: Prepares name changes in the CWD and prompts user to view changes before applying.
@@ -15,7 +14,7 @@
 # OS:
 #    Tested on WindowsOS and WSL Ubuntu Linux distro.
 
-import os, sys
+import os, sys, pdb
 
 class Directory:
     def __init__(self, path=os.getcwd()):
@@ -73,32 +72,25 @@ class Directory:
 
     def _clean_name(self, name: str) -> str:
         """
-        Removes whitespaces from the beginning and ends of the file name.
         All alphabetic chars turned to lowercase.
         Whitespaces between chars are turned to underscores.
         Multiple whitespaces in a row are removed.
         Convert CamelCase to snake_case.
-        Don't mess with extensions.
         """
-        content_name_and_ext = os.path.splitext(name)                   # split extension from content name
-        content_name = content_name_and_ext[0].strip()
-
         i, out = 0, ""
-        while i < len(content_name):
-            if content_name[i].isupper():
+        while i < len(name):
+            if name[i].isupper():
                 if i - 1 > 0:
-                    if content_name[i - 1].islower() and out[len(out) - 1] != "_":
+                    if name[i - 1].islower() and out[len(out) - 1] != "_":
                         out += "_" 
-                out += content_name[i].lower()
-            elif content_name[i] == " ":
+                out += name[i].lower()
+            elif name[i] == " ":
                 if out[len(out) - 1] != "_":
                     out += "_"
             else:
-                out += content_name[i]
+                out += name[i]
             i += 1
-        if len(content_name_and_ext) > 1:
-            for ext in content_name_and_ext[1:]:                        # add extensions back
-                out += ext
+        
         return out
 
 class InvalidPathToDirectory(Exception):
